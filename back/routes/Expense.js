@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Expense = require('../models/expense');
+const Expense = require('./../models/Expense');
 
 // Create a new expense
 router.post('/add', async (req, res) => {
