@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dayjs from "dayjs";
-import axios from "axios";
+import { api } from "../../utils/api";
 
 import {
   PieChart,
@@ -31,8 +31,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const res = await axios.get(
-          "https://vannessplus-demo.onrender.com/api/expenses/get"
+        const res = await api.get(
+          "/api/expenses/get"
         );
         setExpenses(res.data);
       } catch (err) {

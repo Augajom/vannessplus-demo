@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
 import dayjs from "dayjs";
+import { api } from "../../utils/api";
 
 const categories = ["อาหาร", "เดินทาง", "บิล", "บันเทิง", "อื่น ๆ"];
 
@@ -16,7 +16,7 @@ function ExpenseList() {
 
   const fetchExpenses = async () => {
     try {
-      const res = await axios.get("https://vannessplus-demo.onrender.com/api/expenses/get");
+      const res = await api.get("/api/expenses/get");
       const formatted = res.data.map((tx) => ({
         ...tx,
         date: dayjs(tx.date).format("YYYY-MM-DD"),
@@ -39,7 +39,7 @@ function ExpenseList() {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`https://vannessplus-demo.onrender.com/api/expenses/delete/${id}`);
+        await api.delete(`/api/expenses/delete/${id}`);
         setTransactions(transactions.filter((tx) => tx._id !== id));
         Swal.fire("Deleted!", "Your expense has been deleted.", "success");
       } catch (err) {
@@ -112,8 +112,8 @@ function ExpenseList() {
 
     if (formValues) {
       try {
-        const res = await axios.patch(
-          `https://vannessplus-demo.onrender.com/api/expenses/update/${id}`,
+        const res = await api.patch(
+          `/api/expenses/update/${id}`,
           formValues
         );
         setTransactions(
