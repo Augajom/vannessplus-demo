@@ -200,13 +200,13 @@ function ExpenseList() {
                           <div className="flex gap-2 justify-center">
                             <button
                               onClick={() => handleEdit(tx._id)}
-                              className="bg-yellow-500 text-white px-2 py-1 rounded"
+                              className="bg-yellow-500 text-white px-2 py-1 rounded cursor-pointer"
                             >
                               Edit
                             </button>
                             <button
                               onClick={() => handleDelete(tx._id)}
-                              className="bg-red-500 text-white px-2 py-1 rounded"
+                              className="bg-red-500 text-white px-2 py-1 rounded cursor-pointer"
                             >
                               Delete
                             </button>

@@ -126,7 +126,7 @@ function AddExpense() {
             <button
               onClick={handleSubmit}
               disabled={!date || !category || !details || !amount || error}
-              className="px-6 py-3 rounded-lg bg-green-500 text-white text-lg disabled:opacity-50"
+              className="px-6 py-3 rounded-lg bg-green-500 text-white text-lg cursor-pointer disabled:opacity-50"
             >
               Add Expense
             </button>

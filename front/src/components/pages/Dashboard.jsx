@@ -178,7 +178,7 @@ function Dashboard() {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="amount" fill="#3B82F6" />
+                  <Bar dataKey="จำนวนเงิน" fill="#3B82F6" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
