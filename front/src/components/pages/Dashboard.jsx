@@ -31,7 +31,9 @@ function Dashboard() {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const res = await axios.get("https://vannessplus-demo.onrender.com/api/expenses/get");
+        const res = await axios.get(
+          "https://vannessplus-demo.onrender.com/api/expenses/get"
+        );
         setExpenses(res.data);
       } catch (err) {
         console.error("Error fetching expenses:", err);
@@ -43,31 +45,32 @@ function Dashboard() {
   }, []);
 
   const getFilteredExpenses = () => {
-  const now = dayjs();
+    const now = dayjs();
 
-  switch (filter) {
-    case "today":
-      return expenses.filter(e => dayjs(e.date).isSame(now, "day"));
+    switch (filter) {
+      case "today":
+        return expenses.filter((e) => dayjs(e.date).isSame(now, "day"));
 
-    case "week":
-      return expenses.filter(e => dayjs(e.date).isSame(now, "week"));
+      case "week":
+        return expenses.filter((e) => dayjs(e.date).isSame(now, "week"));
 
-    case "month":
-      return expenses.filter(e => dayjs(e.date).isSame(now, "month"));
+      case "month":
+        return expenses.filter((e) => dayjs(e.date).isSame(now, "month"));
 
-    case "custom":
-      if (customRange[0] && customRange[1]) {
-        return expenses.filter(e =>
-          dayjs(e.date).isAfter(dayjs(customRange[0]).subtract(1, "day")) &&
-          dayjs(e.date).isBefore(dayjs(customRange[1]).add(1, "day"))
-        );
-      }
-      return expenses;
+      case "custom":
+        if (customRange[0] && customRange[1]) {
+          return expenses.filter(
+            (e) =>
+              dayjs(e.date).isAfter(dayjs(customRange[0]).subtract(1, "day")) &&
+              dayjs(e.date).isBefore(dayjs(customRange[1]).add(1, "day"))
+          );
+        }
+        return expenses;
 
-    default:
-      return expenses;
-  }
-};
+      default:
+        return expenses;
+    }
+  };
 
   // คำนวณยอดรวม
   const filteredExpenses = getFilteredExpenses();
@@ -85,8 +88,11 @@ function Dashboard() {
   // คำนวณรายจ่ายตามวัน (group by date)
   const dailyData = Object.values(
     filteredExpenses.reduce((acc, e) => {
-      if (!acc[e.date]) acc[e.date] = { date: e.date, amount: 0 };
-      acc[e.date].amount += e.amount;
+      // แปลงวันให้เป็น YYYY-MM-DD
+      const dateKey = dayjs(e.date).format("YYYY-MM-DD");
+
+      if (!acc[dateKey]) acc[dateKey] = { date: dateKey, จำนวนเงิน: 0 };
+      acc[dateKey].จำนวนเงิน += e.amount;
       return acc;
     }, {})
   );
@@ -189,5 +195,4 @@ function Dashboard() {
   );
 }
 
-
-export default Dashboard
+export default Dashboard;
