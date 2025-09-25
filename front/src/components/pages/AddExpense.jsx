@@ -32,7 +32,7 @@ function AddExpense() {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/api/expenses/add", {
+      const res = await axios.post("https://vannessplus-demo.onrender.com/api/expenses/add", {
         date,
         category,
         description: details,

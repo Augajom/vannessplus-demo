@@ -31,7 +31,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/expenses/get");
+        const res = await axios.get("https://vannessplus-demo.onrender.com/api/expenses/get");
         setExpenses(res.data);
       } catch (err) {
         console.error("Error fetching expenses:", err);
